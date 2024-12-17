@@ -1,0 +1,140 @@
+:root {
+    --black: #1e1e1e;
+    --white: #f4f3f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--black);
+    padding: 1em;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    margin-bottom: 1em;
+
+    h1 {
+        color: var(--white);
+    }
+
+    ul {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+        
+        li {
+            list-style: none;
+            text-decoration: none;
+
+            a {
+                font-size: 1.5em;
+                color: var(--white);
+            }
+
+            a:hover {
+                filter: invert(100%);
+            }
+
+        }
+    }
+}
+
+nav {
+    border-top: 1px solid var(--white);
+    border-bottom: 1px solid var(--white);
+    padding: 1em;
+    margin-bottom: 1em;
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+        
+        li {
+            position: relative;
+            list-style: none;
+            text-decoration: none;
+            color: var(--white);
+            cursor: pointer;
+            overflow-x: clip;
+        }
+
+        li::before {
+            content: "";
+            width: 100%;
+            transform: translateX(-105%);
+            bottom: -2px;
+            position: absolute;
+            height: .1em;
+            background-color: var(--white);
+            transition: 0.15s all ease-in-out;
+        }
+
+        li:hover::before {
+            transform: translateX(0);
+        }
+
+        li.active::before {
+            content: "";
+            width: 100%;
+            transform: translateX(0);
+            bottom: -2px;
+            position: absolute;
+            height: .1em;
+            background-color: var(--white);
+            transition: 0.15s all ease-in-out;
+        }
+    }
+}
+
+main {
+    section {
+        display: none;
+    }
+
+    section.active {
+        display: grid;
+    }
+
+    section.masonry.active {
+        display: block;
+        column-count: 3;
+
+        img {
+            width: 100%;
+            margin-bottom: 1em;
+        }
+        
+
+    }
+}
+
+@media screen and (max-width: 768px) {
+    main {
+        section.masonry.active {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+    
+            img {
+                width: 100%;
+                margin-bottom: 0;
+                break-inside: avoid;
+            }
+            
+    
+        }
+    }
+}
